@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Recurso Educativo Digital de Física para grado 9: MRU y Leyes de Newton.">
+<title>Física Interactiva | Movimiento y Fuerzas</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="brand-icon">⚛</span><span>Física <b>Interactiva</b></span></div>
+  <button class="menu-btn" onclick="toggleMenu()" aria-label="Abrir menú">☰</button>
+  <nav id="nav">
+    <a href="#inicio">Inicio</a><a href="#objetivos">Objetivos</a><a href="#mru">MRU</a>
+    <a href="#newton">Newton</a><a href="#laboratorio">Laboratorio</a><a href="#escape">Escape Room</a>
+    <a href="#evaluacion">Evaluación</a><a href="#progreso">Mi progreso</a><a href="#estandares">Estándares</a>
+  </nav>
+</header>
+
+<main>
+<section id="inicio" class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">RED • GRADO 9°</span>
+    <h1>Movimiento<br><span>y Fuerzas</span></h1>
+    <p>Explora, experimenta y descubre la Física mediante simulaciones, retos y actividades interactivas.</p>
+    <button class="primary" onclick="go('objetivos')">Comenzar aprendizaje →</button>
+    <div class="hero-stats"><span>🔬 Experimenta</span><span>🎮 Supera retos</span><span>🏆 Gana insignias</span></div>
+  </div>
+  <div class="orbit-card">
+    <div class="orbit">⚡</div>
+    <div class="orbit-label">Aprende haciendo</div>
+    <div class="particle p1"></div><div class="particle p2"></div><div class="particle p3"></div>
+  </div>
+</section>
+
+<section class="welcome" id="perfil">
+  <div>
+    <span class="eyebrow">TU EXPERIENCIA</span>
+    <h2>Antes de comenzar</h2>
+    <p>Escribe tu nombre y curso para personalizar tu recorrido. Tus datos se guardan solamente en este navegador.</p>
+  </div>
+  <div class="profile-box">
+    <label>Nombre <input id="studentName" placeholder="Ej. Camila"></label>
+    <label>Curso <input id="studentCourse" placeholder="Ej. 9°A"></label>
+    <button class="primary" onclick="saveProfile()">Guardar perfil</button>
+    <p id="profileMsg" class="msg"></p>
+  </div>
+</section>
+
+<section id="objetivos" class="section">
+  <div class="section-head"><span class="eyebrow">01 • RUTA DE APRENDIZAJE</span><h2>¿Qué vas a lograr?</h2></div>
+  <div class="grid cards">
+    <article class="card"><span>01</span><h3>Comprender MRU</h3><p>Explicar las características del Movimiento Rectilíneo Uniforme y relacionar distancia, velocidad y tiempo.</p></article>
+    <article class="card"><span>02</span><h3>Interpretar gráficas</h3><p>Analizar representaciones de posición frente al tiempo y observar cómo cambian al modificar variables.</p></article>
+    <article class="card"><span>03</span><h3>Experimentar</h3><p>Manipular variables en simulaciones, observar resultados y formular conclusiones.</p></article>
+    <article class="card"><span>04</span><h3>Comprender Newton</h3><p>Explicar las tres leyes y relacionar fuerza, masa y aceleración.</p></article>
+    <article class="card"><span>05</span><h3>Resolver problemas</h3><p>Aplicar conceptos físicos a situaciones cotidianas mediante retos y preguntas.</p></article>
+    <article class="card"><span>06</span><h3>Indagar científicamente</h3><p>Probar hipótesis, analizar resultados y construir conclusiones a partir de experimentos virtuales.</p></article>
+  </div>
+</section>
+
+<section id="mru" class="section alt">
+  <div class="section-head"><span class="eyebrow">02 • MÓDULO MRU</span><h2>Movimiento Rectilíneo Uniforme</h2><p>Un movimiento en línea recta con velocidad constante.</p></div>
+  <div class="content-grid">
+    <div class="lesson">
+      <h3>Conceptos esenciales</h3>
+      <p>En el MRU, un objeto se desplaza en trayectoria recta manteniendo una velocidad constante.</p>
+      <div class="formula">v = d / t</div>
+      <div class="formula">d = v × t</div>
+      <div class="formula">t = d / v</div>
+      <p><small><b>v</b> = velocidad · <b>d</b> = distancia · <b>t</b> = tiempo</small></p>
+    </div>
+    <div class="sim-card">
+      <div class="sim-title"><span>🚗</span><b>Simulador de MRU</b></div>
+      <div class="controls">
+        <label>Velocidad (m/s)<input id="mruV" type="number" min="0.1" step="0.1" value="10"></label>
+        <label>Tiempo (s)<input id="mruT" type="number" min="0.1" step="0.1" value="5"></label>
+      </div>
+      <div class="track"><div id="car" class="car">🚗</div></div>
+      <div class="results"><div><small>Distancia</small><strong id="mruD">50 m</strong></div><div><small>Velocidad</small><strong id="mruVR">10 m/s</strong></div><div><small>Tiempo</small><strong id="mruTR">5 s</strong></div></div>
+      <button class="secondary" onclick="runMRU()">▶ Experimentar</button>
+    </div>
+  </div>
+  <div class="chart-card">
+    <div><h3>Gráfica posición – tiempo</h3><p>Modifica velocidad y observa la relación entre las variables.</p></div>
+    <canvas id="mruChart" width="800" height="300" aria-label="Gráfica de posición frente a tiempo"></canvas>
+  </div>
+  <div class="activity">
+    <h3>🧩 Actividad: relaciona los conceptos</h3>
+    <p>Selecciona la definición correcta para cada concepto.</p>
+    <div class="match-grid">
+      <label>Velocidad <select id="match1"><option value="">Selecciona…</option><option value="v">Distancia recorrida por unidad de tiempo</option><option value="d">Espacio recorrido</option><option value="t">Duración del movimiento</option></select></label>
+      <label>Distancia <select id="match2"><option value="">Selecciona…</option><option value="v">Distancia recorrida por unidad de tiempo</option><option value="d">Espacio recorrido</option><option value="t">Duración del movimiento</option></select></label>
+      <label>Tiempo <select id="match3"><option value="">Selecciona…</option><option value="v">Distancia recorrida por unidad de tiempo</option><option value="d">Espacio recorrido</option><option value="t">Duración del movimiento</option></select></label>
+    </div>
+    <button class="primary" onclick="checkMatch()">Comprobar</button><p id="matchMsg" class="msg"></p>
+  </div>
+  <div class="challenge">
+    <span class="badge">RETO MRU</span><h3>Un automóvil se desplaza a 20 m/s durante 10 segundos. ¿Qué distancia recorre?</h3>
+    <div class="options"><button onclick="answer(this,false)">20 m</button><button onclick="answer(this,true)">200 m</button><button onclick="answer(this,false)">2 m</button><button onclick="answer(this,false)">30 m</button></div>
+    <p id="mruChallengeMsg" class="msg"></p>
+  </div>
+</section>
+
+<section id="newton" class="section">
+  <div class="section-head"><span class="eyebrow">03 • MÓDULO NEWTON</span><h2>Las tres leyes de Newton</h2><p>Comprende las fuerzas a través de ejemplos y experimentación.</p></div>
+  <div class="law-grid">
+    <article class="law"><div class="law-number">I</div><h3>Inercia</h3><p>Un cuerpo mantiene su estado de reposo o movimiento si no actúa sobre él una fuerza neta que lo cambie.</p><div class="mini-demo"><span id="ball1">●</span></div><button class="secondary" onclick="demoNewton(1)">Aplicar fuerza</button></article>
+    <article class="law"><div class="law-number">II</div><h3>F = m × a</h3><p>La aceleración depende de la fuerza aplicada y de la masa del objeto.</p><div class="mini-demo"><span id="ball2">●</span></div><button class="secondary" onclick="demoNewton(2)">Aplicar fuerza</button></article>
+    <article class="law"><div class="law-number">III</div><h3>Acción y reacción</h3><p>A toda acción corresponde una reacción de igual magnitud y en sentido contrario.</p><div class="mini-demo"><span id="ball3">↔</span></div><button class="secondary" onclick="demoNewton(3)">Ver ejemplo</button></article>
+  </div>
+  <div class="newton-explain">
+    <div><span class="big-icon">💥</span><h3>Ejemplos cotidianos</h3><p>Caminar, saltar, empujar una pared o la propulsión permiten observar las leyes de Newton en situaciones reales.</p></div>
+    <div class="formula large">F = m × a</div>
+  </div>
+</section>
+
+<section id="laboratorio" class="section alt">
+  <div class="section-head"><span class="eyebrow">04 • LABORATORIO VIRTUAL</span><h2>Experimenta con fuerzas</h2><p>Modifica la masa y la fuerza aplicada para observar la aceleración.</p></div>
+  <div class="lab">
+    <div class="lab-controls">
+      <label>Masa (kg)<input id="mass" type="range" min="1" max="20" value="5" oninput="updateLab()"><output id="massOut">5 kg</output></label>
+      <label>Fuerza (N)<input id="force" type="range" min="0" max="100" value="25" oninput="updateLab()"><output id="forceOut">25 N</output></label>
+      <div class="lab-result"><small>Aceleración</small><strong id="accel">5.00 m/s²</strong></div>
+      <button class="primary" onclick="applyForce()">Aplicar fuerza</button>
+      <button class="secondary" onclick="resetLab()">Reiniciar</button>
+    </div>
+    <div class="lab-stage"><div id="crate">📦</div><div class="floor"></div><p id="labText">Ajusta las variables y aplica una fuerza.</p></div>
+  </div>
+  <div class="reflection">
+    <h3>🔎 ¿Qué observaste?</h3>
+    <p>Responde mentalmente o en tu actividad de clase:</p>
+    <ul><li>¿Qué ocurre con la aceleración cuando aumenta la fuerza?</li><li>¿Qué sucede si aumenta la masa manteniendo la fuerza?</li><li>¿Cómo se relacionan tus observaciones con F = m × a?</li></ul>
+  </div>
+</section>
+
+<section id="escape" class="section escape">
+  <div class="section-head"><span class="eyebrow">05 • GAMIFICACIÓN</span><h2>🚨 Escape Room: El laboratorio perdido</h2><p>El laboratorio está bloqueado. Supera tres retos para escapar.</p></div>
+  <div id="escapeGame" class="escape-card">
+    <div class="escape-progress"><span id="escapeStep">Reto 1 de 3</span><div><i id="escapeBar"></i></div></div>
+    <div id="escapeContent"></div>
+  </div>
+</section>
+
+<section id="evaluacion" class="section">
+  <div class="section-head"><span class="eyebrow">06 • EVALUACIÓN FINAL</span><h2>Demuestra lo que aprendiste</h2><p>10 preguntas sobre MRU y las leyes de Newton.</p></div>
+  <div id="quiz" class="quiz"></div>
+  <div class="quiz-actions"><button class="primary" onclick="submitQuiz()">Finalizar evaluación</button><button class="secondary" onclick="resetQuiz()">Reiniciar</button></div>
+  <div id="quizResult"></div>
+</section>
+
+<section id="progreso" class="section alt">
+  <div class="section-head"><span class="eyebrow">07 • SEGUIMIENTO</span><h2>Mi progreso</h2></div>
+  <div class="progress-panel">
+    <div class="profile-summary"><div class="avatar">⚛</div><div><h3 id="sumName">Estudiante</h3><p id="sumCourse">Grado 9°</p></div></div>
+    <div class="progress-bar"><span id="progressFill"></span></div><strong id="progressPct">0%</strong>
+    <div class="metrics"><div><b id="points">0</b><small>Puntos</small></div><div><b id="completed">0</b><small>Retos</small></div><div><b id="badges">0</b><small>Insignias</small></div><div><b id="quizScore">—</b><small>Evaluación</small></div></div>
+    <h3>Insignias</h3><div id="badgeList" class="badges"></div>
+  </div>
+</section>
+
+<section id="estandares" class="section">
+  <div class="section-head"><span class="eyebrow">08 • FUNDAMENTO PEDAGÓGICO</span><h2>Estándares que orientan el RED</h2></div>
+  <div class="standards">
+    <article><div class="standard-icon">💻</div><h3>ISTE Standards for Students</h3><h4>Aprendiz activo</h4><p>El estudiante usa tecnologías digitales para explorar fenómenos físicos.</p><h4>Diseñador innovador</h4><p>Utiliza simulaciones para modificar variables, probar hipótesis y analizar resultados.</p></article>
+    <article><div class="standard-icon">🇨🇴</div><h3>MEN – Ciencias Naturales, 9°</h3><h4>Uso de modelos</h4><p>Representa fenómenos mediante gráficas, relaciones y diagramas de fuerzas.</p><h4>Indagación científica</h4><p>Diseña, ejecuta y analiza experimentos virtuales, formulando hipótesis y conclusiones.</p></article>
+  </div>
+  <div class="scorm">
+    <h3>📦 Compatibilidad y estándares e-learning: SCORM</h3>
+    <p>SCORM es un estándar técnico que permite empaquetar recursos educativos y facilitar su integración con LMS compatibles como Moodle o Chamilo.</p>
+    <div class="scorm-grid"><span><b>Interoperabilidad</b><small>Comunicación con LMS compatibles.</small></span><span><b>Reusabilidad</b><small>El recurso puede reutilizarse en diferentes cursos.</small></span><span><b>Seguimiento</b><small>Puede registrar progreso, calificaciones e intentos cuando el paquete está integrado en un LMS.</small></span></div>
+    <p class="notice">ℹ️ Esta versión web es un RED funcional en HTML/CSS/JavaScript. No se declara como paquete SCORM hasta realizar su empaquetado técnico correspondiente.</p>
+  </div>
+</section>
+</main>
+
+<footer><div class="brand">⚛ Física Interactiva</div><p>Recurso Educativo Digital • Grado 9° • Movimiento y Fuerzas</p><button onclick="clearData()">Borrar datos locales</button></footer>
+<script src="js/script.js"></script>
+</body>
+</html>
